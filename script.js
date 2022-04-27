@@ -8,10 +8,13 @@ function createProductImageElement(imageSource) {
   return img;
 }
 
+// função para remover o item do carrinho de compras 
 function cartItemClickListener(event) {
+  saveCartItems(event.target, 'remove');
   cartItem.removeChild(event.target);
 }
 
+// função para criar o item a ser inserido no carrinho de compras
 function createCartItemElement({ sku, name, salePrice }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
@@ -20,14 +23,20 @@ function createCartItemElement({ sku, name, salePrice }) {
   return li;
 }
 
+// função que faz a requisição do item pelo ID e adiciona no carrinho (Função do evento de click do botão).
 const call2 = async (e) => {
   const item = await fetchItem(e.target.parentNode.firstChild.innerText);
-  const sku = item.id;
-  const name = item.title;
-  const salePrice = item.price;
-  cartItem.appendChild(createCartItemElement({ sku, name, salePrice }));
+  const obj = {
+    sku: item.id,
+    name: item.title,
+    salePrice: item.price,
+  };
+  const itemFinal = createCartItemElement(obj);
+  cartItem.appendChild(itemFinal);
+  saveCartItems(obj, 'add'); 
 };
 
+// função para criar os elementos
 function createCustomElement(element, className, innerText) {
   if (element === 'button') {
     const e = document.createElement(element);
@@ -42,6 +51,7 @@ function createCustomElement(element, className, innerText) {
   return e;
 }
 
+// função para criar cada item da lista de produtos 
 function createProductItemElement({ sku, name, image }) {
   const section = document.createElement('section');
   section.className = 'item';

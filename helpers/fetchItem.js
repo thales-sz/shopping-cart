@@ -3,11 +3,11 @@ const fetchItem = async (id = undefined) => {
   const url = `https://api.mercadolibre.com/items/${ItemID}`;
 
   if (url.endsWith('undefined')) {
-    throw new Error('You must provide an url'); 
+    throw new Error('You must provide an url');
   }
-    const request = await fetch(url);
-    const result = await request.json();
-    return result; 
+  const request = await fetch(url);
+  const result = await request.json();
+  return result;
 };
 
 if (typeof module !== 'undefined') {
