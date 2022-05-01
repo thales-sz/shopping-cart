@@ -89,6 +89,7 @@ const call1 = async () => {
 };
 call1();
 
-window.onload = () => { 
-  getSavedCartItems(createCartItemElement);
+window.onload = async (e) => { 
+  await e.preventDefault();
+  await getSavedCartItems(createCartItemElement);
 };
