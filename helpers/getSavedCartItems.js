@@ -7,7 +7,6 @@ const getSavedCartItems = (func) => {
   cartItems.forEach((item) => {
     let aux = item;
     aux += '}';
-    console.log(aux);
     cartI.appendChild(func(JSON.parse(aux)));
   });
 };
