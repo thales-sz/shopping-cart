@@ -9,8 +9,18 @@ function createProductImageElement(imageSource) {
 }
 
 // função para remover o item do carrinho de compras 
-function cartItemClickListener(event) {
-  saveCartItems(event.target, 'remove');
+async function cartItemClickListener(event) {
+  let id = event.target.innerText.split('|');
+  id = id[0].split(':');
+  id = id[1].replace(' ', '');
+  id = id.replace(' ', '');
+  const item = await fetchItem(id);
+  const obj = {
+    sku: item.id,
+    name: item.title,
+    salePrice: item.price,
+  };
+  saveCartItems(obj, 'remove');
   cartItem.removeChild(event.target);
 }
 
@@ -79,4 +89,6 @@ const call1 = async () => {
 };
 call1();
 
-window.onload = () => { };
+window.onload = () => { 
+  getSavedCartItems(createCartItemElement);
+};
