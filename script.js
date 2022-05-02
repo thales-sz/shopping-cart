@@ -106,7 +106,12 @@ function getSkuFromProductItem(item) {
 }
 
 const call1 = async () => {
+  const loading = document.createElement('div');
+  loading.className = 'loading';
+  loading.innerHTML = 'carregando...';
+  itemsSection.appendChild(loading);
   const array = await fetchProducts('computador');
+  itemsSection.removeChild(loading);
   array.results.forEach((product) => {
     const sku = product.id;
     const name = product.title;
