@@ -12,7 +12,7 @@ function createProductImageElement(imageSource) {
 }
 
 function clearCart() {
-  saveCartItems('', 'all');
+  localStorage.setItem('cartItems', '');
   localStorage.setItem('valor', 0);
   cartItem.innerHTML = '';
   price.innerHTML = 0;

@@ -9,7 +9,7 @@ const saveCartItems = (cartItem, value) => {
     newStorage = newStorage.replace(remover, '');
     storageValue = newStorage;
     localStorage.setItem('cartItems', newStorage);
-  } if (value === 'all') localStorage.setItem('cartItems', cartItem);
+  } 
 };
 
 if (typeof module !== 'undefined') {
