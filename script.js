@@ -33,7 +33,6 @@ const totalPrice = (value, op) => {
   } 
 };
 
-// função para remover o item do carrinho de compras 
 async function cartItemClickListener(event) {
   let id = event.target.innerText.split('|');
   id = id[0].split(':');
@@ -50,7 +49,6 @@ async function cartItemClickListener(event) {
   cartItem.removeChild(event.target);
 }
 
-// função para criar o item a ser inserido no carrinho de compras
 function createCartItemElement({ sku, name, salePrice }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
@@ -59,7 +57,6 @@ function createCartItemElement({ sku, name, salePrice }) {
   return li;
 }
 
-// função que faz a requisição do item pelo ID e adiciona no carrinho (Função do evento de click do botão).
 const call2 = async (e) => {
   const item = await fetchItem(e.target.parentNode.firstChild.innerText);
   const obj = {
@@ -73,7 +70,6 @@ const call2 = async (e) => {
   saveCartItems(obj, 'add'); 
 };
 
-// função para criar os elementos
 function createCustomElement(element, className, innerText) {
   if (element === 'button') {
     const e = document.createElement(element);
@@ -88,7 +84,6 @@ function createCustomElement(element, className, innerText) {
   return e;
 }
 
-// função para criar cada item da lista de produtos 
 function createProductItemElement({ sku, name, image }) {
   const section = document.createElement('section');
   section.className = 'item';
@@ -101,9 +96,9 @@ function createProductItemElement({ sku, name, image }) {
   return section;
 }
 
-// function getSkuFromProductItem(item) {
-//   return item.querySelector('span.item__sku').innerText;
-// }
+function getSkuFromProductItem(item) {
+  return item.querySelector('span.item__sku').innerText;
+}
 
 const call1 = async () => {
   const loading = document.createElement('div');
