@@ -2,7 +2,6 @@ let storageValue = '';
 const saveCartItems = (cartItem, value) => {
   if (value === 'add') {
     storageValue += `${JSON.stringify(cartItem)}`;
-    console.log(storageValue);
     localStorage.setItem('cartItems', storageValue);
   } if (value === 'remove') {
     let newStorage = localStorage.getItem('cartItems');
@@ -10,7 +9,7 @@ const saveCartItems = (cartItem, value) => {
     newStorage = newStorage.replace(remover, '');
     storageValue = newStorage;
     localStorage.setItem('cartItems', newStorage);
-  }
+  } if (value === 'all') localStorage.setItem('cartItems', cartItem);
 };
 
 if (typeof module !== 'undefined') {

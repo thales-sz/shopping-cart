@@ -1,7 +1,8 @@
 const itemsSection = document.querySelector('.items');
 const cartItem = document.querySelector('.cart__items');
 const price = document.querySelector('.total-price');
-let subtotal = localStorage.getItem('valor');
+const clearButton = document.querySelector('.empty-cart');
+let subtotal = parseInt(localStorage.getItem('valor'), 10);
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -10,7 +11,15 @@ function createProductImageElement(imageSource) {
   return img;
 }
 
+function clearCart() {
+  saveCartItems('', 'all');
+  localStorage.setItem('valor', 0);
+  cartItem.innerHTML = '';
+  price.innerHTML = 0;
+}
+
 const totalPrice = (value, op) => {
+  if (Number.isNaN(subtotal)) subtotal = 0;
   if (op === 'sum') {
     subtotal += value.salePrice;
     localStorage.setItem('valor', subtotal);
@@ -106,6 +115,8 @@ const call1 = async () => {
   });
 };
 call1();
+
+clearButton.addEventListener('click', clearCart);
 
 window.onload = async (e) => { 
   await e.preventDefault();
