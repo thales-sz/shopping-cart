@@ -4,8 +4,8 @@ const computadorSearch = require('../mocks/search');
 
 describe('1 - Teste a função fecthProducts', () => {
   it('Verifica se fecthProducts é uma função', () => {
-    const expected = 'function';
-    expect(typeof fetchProducts).toBe(expected);
+    const resultado = 'function';
+    expect(typeof fetchProducts).toBe(resultado);
   });
   it('Verifica se ao executar fecthProducts com o argumento "computador", fetch deve ser chamada', async () => {
     fetchProducts('computador');
